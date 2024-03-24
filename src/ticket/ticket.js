@@ -4,8 +4,8 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ticket')
         .setDescription('Sets up the ticket system.'),
-    async execute(interaction,client) {
-        const config =  client.getConfig();
+    async execute(interaction, client) {
+        const config = client.getConfig();
         console.log('Ticket command executed');
         if (!interaction.member.permissions.has('MANAGE_GUILD')) {
             console.log('Permission check failed');
@@ -13,14 +13,14 @@ module.exports = {
         }
 
         const embed = new EmbedBuilder()
-            .setColor(config.ticketSetup.embedColor)
-            .setTitle(config.ticketSetup.embedTitle)
-            .setImage(config.ticketSetup.embedImage)
-            .setDescription(config.ticketSetup.embedDescription);
+            .setColor(config.ticketSettings.ticketSetup.embedColor)
+            .setTitle(config.ticketSettings.ticketSetup.embedTitle)
+            .setImage(config.ticketSettings.ticketSetup.embedImage)
+            .setDescription(config.ticketSettings.ticketSetup.embedDescription);
         const rows = [];
         let currentRow = new ActionRowBuilder();
 
-        const ticketGroupsEntries = Object.values(config.ticketGroups);
+        const ticketGroupsEntries = Object.values(config.ticketSettings.ticketGroups);
         ticketGroupsEntries.forEach((group, index) => {
             if (!ButtonStyle[group.buttonStyle]) {
                 throw new Error(`Invalid button style: ${group.buttonStyle}`);
