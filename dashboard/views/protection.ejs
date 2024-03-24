@@ -1,0 +1,626 @@
+<div class="page">
+    <div class="container mx-auto">
+        <form id="config.protection-form" action="/protection" method="post" class="space-y-8 divide-y divide-gray-200">
+            <!-- General Bot Settings -->
+            <div class="space-y-8 divide-y divide-gray-200">
+                <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                    <h2 class="text-lg leading-6 font-medium text-white">General Bot Settings</h2>
+                    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                        <div class="sm:col-span-3">
+                            <label for="allowedGuildId" class="block text-sm font-medium text-white mb-2">Allowed Guild
+                                ID:</label>
+                            <input type="text" required id="allowedGuildId" name="allowedGuildId"
+                                value="<%= config.protection.allowedGuildId %>" class="input2 w-[100%]">
+                        </div>
+
+                        <div class="sm:col-span-3">
+                            <label for="logChannelId" class="block text-sm font-medium text-white mb-2">Log Channel
+                                ID:</label>
+                            <input type="text" required id="logChannelId" name="logChannelId"
+                                value="<%= config.protection.logChannelId %>" class="input2 w-[100%]">
+                        </div>
+
+                        <div class="sm:col-span-6">
+                            <label for="whitelistRoles" class="block text-sm font-medium text-white mb-2">Whitelist
+                                Roles:</label>
+                            <div id="whitelistRoles" class="whitelistgrid">
+                                <% config.protection.whitelistRoles.forEach(function(role, index) { %>
+                                    <input type="text" required name="whitelistRoles[<%= index %>]" value="<%= role %>"
+                                        class="input w-[100%]">
+                                    <% }) %>
+                            </div>
+                            <div class="rolebutton flex">
+                                <button type="button" onclick="addRoleInput()"
+                                    class="ui-btn bg-[#010314] mt-5"><span>Add Role</span></button>
+                                <button type="button" onclick="removeLastRole()"
+                                    class="ui-btn bg-[#010314] mt-5"><span>Delete Role</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Anti-spam Settings -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Anti-spam Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.antispam.active == 'true' && "checked" %> id="cbx-1" class="inp-cbx" name="antispam.active"/>
+                                    <label for="cbx-1" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="antispam-messageCount"
+                                    class="block text-sm font-medium text-white mb-2">Message Count:</label>
+                                <input type="number" required name="antispam.messageCount" id="antispam-messageCount"
+                                    class="input2" value="<%= config.protection.antispam.messageCount %>"
+                                    placeholder="5">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="antispam-time" class="block text-sm font-medium text-white mb-2">Time
+                                    (ms):</label>
+                                <input type="number" required name="antispam.time" id="antispam-time" class="input2"
+                                    value="<%= config.protection.antispam.time %>" placeholder="10000">
+                            </div>
+                        </div>
+                        <h2 class="text-lg leading-6 font-medium text-white mt-4">Actions</h2>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.antispam.deleteMessages == 'true' && "checked" %> id="cbx-2" class="inp-cbx" name="antispam.deleteMessages"/>
+                                    <label for="cbx-2" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Delete Messages</span>
+                            </div>
+                        </div>            
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.antispam.timeout == 'true' && "checked" %> id="cbx-3" class="inp-cbx" name="antispam.timeout"/>
+                                    <label for="cbx-3" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Timeout</span>
+                            </div>
+                        </div>  
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-6">
+                                <label for="antispam-time" class="block text-sm font-medium text-white mb-2">Timeout Duration
+                                    (ms):</label>
+                                <input type="number" required name="antispam.timeoutDuration" id="antispam-time" class="input2"
+                                    value="<%= config.protection.antispam.timeoutDuration %>" placeholder="10000">
+                            </div>
+                        </div>            
+                    </div>
+                </div>
+                <!-- Anti-links Settings -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Anti-links Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.antilinks.active == 'true' && "checked" %> id="cbx-4" class="inp-cbx" name="antilinks.active"/>
+                                    <label for="cbx-4" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <h2 class="text-lg leading-6 font-medium text-white mt-4">Actions</h2>
+                            <div class="sm:col-span-6">
+                                <div class="radio-button-container">
+                                    <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="radio1" name="radio-group" value="antilinks.actions.timeout" <%-  config.protection.antilinks.actions.timeout == "true" && "checked"%>>
+                                    <label class="radio-button__label" for="radio1">
+                                      <span class="radio-button__custom"></span>
+                                      Timeout
+                                    </label>
+                                  </div>
+                                  <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="radio2" name="radio-group"  value="antilinks.actions.kick" <%-  config.protection.antilinks.actions.kick == "true" && "checked"%>>
+                                    <label class="radio-button__label" for="radio2">
+                                      <span class="radio-button__custom"></span>
+                                      Kick
+                                    </label>
+                                  </div>
+                                  <div class="radio-button">
+                                    <input type="radio" class="radio-button__input" id="radio3" name="radio-group"  value="antilinks.actions.ban" <%-  config.protection.antilinks.actions.ban == "true" && "checked"%>>
+                                    <label class="radio-button__label" for="radio3">
+                                      <span class="radio-button__custom"></span>
+                                      Ban
+                                    </label>
+                                  </div>
+                                  </div>
+                                <div class="mt-4">
+                                    <label for="antilinks-actions-timeoutDuration"
+                                        class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                    <input type="number" required name="antilinks.actions.timeoutDuration"
+                                        id="antilinks-actions-timeoutDuration" class="input2"
+                                        value="<%= config.protection.antilinks.actions.timeoutDuration %>">
+                                </div>
+                            </div>
+                            <div class="mt-4 grid grid-cols-1 gap-x-4 sm:grid-cols-6">
+                                <div class="sm:col-span-3">
+                                    <div class="flex items-center">
+                                        <div class="checkbox">
+                                            <input type="checkbox"  <%- config.protection.antilinks.deleteMessages == 'true' && "checked" %> id="cbx-5" class="inp-cbx" name="antilinks.deleteMessages"/>
+                                            <label for="cbx-5" class="cbx">
+                                                <span>
+                                                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <span class="ml-2 text-sm text-white">Delete Message</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Channel Monitoring Settings -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Channel Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.channelMonitoring.active == 'true' && "checked" %> id="cbx-6" class="inp-cbx"  name="channelMonitoring.active"/>
+                                    <label for="cbx-6" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="channelMonitoring-maxChannelChanges"
+                                    class="block text-sm font-medium text-white mb-2">Max Channel Changes:</label>
+                                <input type="number" required name="channelMonitoring.maxChannelChanges"
+                                    id="channelMonitoring-maxChannelChanges" class="input2"
+                                    value="<%= config.protection.channelMonitoring.maxChannelChanges %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="channelMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Time Frame (ms):</label>
+                                <input type="number" required name="channelMonitoring.timeFrame" id="channelMonitoring-timeFrame"
+                                    class="input2" value="<%= config.protection.channelMonitoring.timeFrame %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="channelMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="channelMonitoring-action" name="channelMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.channelMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.channelMonitoring.action==='kick'
+                                        ? 'selected' : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.channelMonitoring.action==='ban'
+                                        ? 'selected' : '' %>>Ban</option>
+                                </select>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="channelMonitoring-timeoutDuration"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="channelMonitoring.timeoutDuration"
+                                    id="channelMonitoring-timeoutDuration" class="input2"
+                                    value="<%= config.protection.channelMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- roleEditMonitoring -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Role Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.roleMonitoring.active == 'true' && "checked" %> id="cbx-7" class="inp-cbx" name="roleMonitoring.active"/>
+                                    <label for="cbx-7" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="roleMonitoring-maxRoleChanges"
+                                    class="block text-sm font-medium text-white mb-2">Max Role Changes:</label>
+                                <input type="number" required name="roleMonitoring.maxRoleChanges"
+                                    id="roleMonitoring-maxRoleChanges" class="input2"
+                                    value="<%= config.protection.roleMonitoring.maxRoleChanges %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="roleMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Time Frame (ms):</label>
+                                <input type="number" required name="roleMonitoring.timeFrame" id="roleMonitoring-timeFrame"
+                                    class="input2" value="<%= config.protection.roleMonitoring.timeFrame %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="roleMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="roleMonitoring-action" name="roleMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.roleMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.roleMonitoring.action==='kick'
+                                        ? 'selected' : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.roleMonitoring.action==='ban' ? 'selected'
+                                        : '' %>>Ban</option>
+                                </select>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="roleMonitoring-timeoutDuration"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="roleMonitoring.timeoutDuration"
+                                    id="roleMonitoring-timeoutDuration" class="input2"
+                                    value="<%= config.protection.roleMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- kickMonitoring -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Kick Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.kickMonitoring.active == 'true' && "checked" %> id="cbx-8" class="inp-cbx" name="kickMonitoring.active"/>
+                                    <label for="cbx-8" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="kickMonitoring-maxKicks"
+                                    class="block text-sm font-medium text-white mb-2">Max Kicks:</label>
+                                <input type="number" required name="kickMonitoring.maxKicks" id="kickMonitoring-maxKicks"
+                                    class="input2" value="<%= config.protection.kickMonitoring.maxKicks %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="kickMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Time Frame (ms):</label>
+                                <input type="number" required name="kickMonitoring.timeFrame" id="kickMonitoring-timeFrame"
+                                    class="input2" value="<%= config.protection.kickMonitoring.timeFrame %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="kickMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="kickMonitoring-action" name="kickMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.kickMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.kickMonitoring.action==='kick'
+                                        ? 'selected' : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.kickMonitoring.action==='ban' ? 'selected'
+                                        : '' %>>Ban</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label for="kickMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="kickMonitoring.timeoutDuration"
+                                    id="kickMonitoring-timeFrame" class="input2"
+                                    value="<%= config.protection.kickMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- banMonitoring -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Ban Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.banMonitoring.active == 'true' && "checked" %> id="cbx-9" class="inp-cbx" name="banMonitoring.active"/>
+                                    <label for="cbx-9" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="banMonitoring-maxBans" class="block text-sm font-medium text-white mb-2">Max
+                                    Bans:</label>
+                                <input type="number" required name="banMonitoring.maxBans" id="banMonitoring-maxBans"
+                                    class="input2" value="<%= config.protection.banMonitoring.maxBans %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="banMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Time Frame (ms):</label>
+                                <input type="number" required name="banMonitoring.timeFrame" id="banMonitoring-timeFrame"
+                                    class="input2" value="<%= config.protection.banMonitoring.timeFrame %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="banMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="banMonitoring-action" name="banMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.banMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.banMonitoring.action==='kick' ? 'selected'
+                                        : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.banMonitoring.action==='ban' ? 'selected'
+                                        : '' %>>Ban</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label for="banMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="banMonitoring.timeoutDuration"
+                                    id="banMonitoring-timeFrame" class="input2"
+                                    value="<%= config.protection.banMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- botMonitoring -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Bot Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.botMonitoring.active == 'true' && "checked" %> id="cbx-10" class="inp-cbx" name="botMonitoring.active"/>
+                                    <label for="cbx-10" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="botMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="botMonitoring-action" name="botMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.botMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.botMonitoring.action==='kick' ? 'selected'
+                                        : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.botMonitoring.action==='ban' ? 'selected'
+                                        : '' %>>Ban</option>
+                                </select>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="botMonitoring-botAction"
+                                    class="block text-sm font-medium text-white mb-2">Bot Action:</label>
+                                <select id="botMonitoring-botAction" name="botMonitoring.botAction"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="kick" <%=config.protection.botMonitoring.botAction==='kick'
+                                        ? 'selected' : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.botMonitoring.botAction==='ban'
+                                        ? 'selected' : '' %>>Ban</option>
+                                    <option value="removeRole"
+                                        <%=config.protection.botMonitoring.botAction==='removeRole' ? 'selected' : '' %>
+                                        >Remove Role</option>
+                                </select>
+                            </div>
+
+                            <div class="sm:col-span-6">
+                                <label for="botMonitoring-timeoutDuration"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="botMonitoring.timeoutDuration"
+                                    id="botMonitoring-timeoutDuration" class="input2"
+                                    value="<%= config.protection.botMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- roleEditMonitoring -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Role Edit Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.roleEditMonitoring.active == 'true' && "checked" %> id="cbx-11" class="inp-cbx"name="roleEditMonitoring.active" />
+                                    <label for="cbx-11" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="roleEditMonitoring-maxEdits"
+                                    class="block text-sm font-medium text-white mb-2">Max Edits:</label>
+                                <input type="number" required name="roleEditMonitoring.maxEdits" id="roleEditMonitoring-maxEdits"
+                                    class="input2" value="<%= config.protection.roleEditMonitoring.maxEdits %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="roleEditMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Time Frame (ms):</label>
+                                <input type="number" required name="roleEditMonitoring.timeFrame"
+                                    id="roleEditMonitoring-timeFrame" class="input2"
+                                    value="<%= config.protection.roleEditMonitoring.timeFrame %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="roleEditMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="roleEditMonitoring-action" name="roleEditMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.roleEditMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.roleEditMonitoring.action==='kick'
+                                        ? 'selected' : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.roleEditMonitoring.action==='ban'
+                                        ? 'selected' : '' %>>Ban</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label for="roleEditMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="roleEditMonitoring.timeoutDuration"
+                                    id="roleEditMonitoring-timeFrame" class="input2"
+                                    value="<%= config.protection.roleEditMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- serverEditMonitoring -->
+                <div class="pt-8">
+                    <div class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]">
+                        <h2 class="text-lg leading-6 font-medium text-white">Server Edit Monitoring Settings</h2>
+                        <div class="mt-6">
+                            <div class="flex items-center">
+                                <div class="checkbox">
+                                    <input type="checkbox"  <%- config.protection.serverEditMonitoring.active == 'true' && "checked" %> id="cbx-12" class="inp-cbx" name="serverEditMonitoring.active"/>
+                                    <label for="cbx-12" class="cbx">
+                                        <span>
+                                            <svg viewBox="0 0 12 10" height="10px" width="12px">
+                                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                </div>
+                                <span class="ml-2 text-sm text-white">Active</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <div class="sm:col-span-3">
+                                <label for="serverEditMonitoring-maxEdits"
+                                    class="block text-sm font-medium text-white mb-2">Max Edits:</label>
+                                <input type="number" required name="serverEditMonitoring.maxEdits"
+                                    id="serverEditMonitoring-maxEdits" class="input2"
+                                    value="<%= config.protection.serverEditMonitoring.maxEdits %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="serverEditMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Time Frame (ms):</label>
+                                <input type="number" required name="serverEditMonitoring.timeFrame"
+                                    id="serverEditMonitoring-timeFrame" class="input2"
+                                    value="<%= config.protection.serverEditMonitoring.timeFrame %>">
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="serverEditMonitoring-action"
+                                    class="block text-sm font-medium text-white mb-2">Action:</label>
+                                <select id="serverEditMonitoring-action" name="serverEditMonitoring.action"
+                                    class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                    <option value="timeout" <%=config.protection.serverEditMonitoring.action==='timeout'
+                                        ? 'selected' : '' %>>Timeout</option>
+                                    <option value="kick" <%=config.protection.serverEditMonitoring.action==='kick'
+                                        ? 'selected' : '' %>>Kick</option>
+                                    <option value="ban" <%=config.protection.serverEditMonitoring.action==='ban'
+                                        ? 'selected' : '' %>>Ban</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label for="serverEditMonitoring-timeFrame"
+                                    class="block text-sm font-medium text-white mb-2">Timeout Duration (ms):</label>
+                                <input type="number" required name="serverEditMonitoring.timeoutDuration"
+                                    id="serverEditMonitoring-timeFrame" class="input2"
+                                    value="<%= config.protection.serverEditMonitoring.timeoutDuration %>">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="pt-5">
+                    <div class="flex justify-start">
+                        <button type="submit" class="ui-btn bg-[#010314]"><span>Update Settings</span></button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <script>
+        function addRoleInput() {
+            const container = document.getElementById('whitelistRoles');
+            const index = container.getElementsByTagName('input').length;
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = `whitelistRoles[${index}]`;
+            input.className = 'input w-[100%]'
+            input.placeholder = 'Enter role ID'
+            input.placeholder = 'Enter role ID'
+            container.appendChild(input);
+        }
+        function removeLastRole() {
+    const whitelistGrid = document.getElementById('whitelistRoles');
+    if (whitelistGrid.lastElementChild) {
+        whitelistGrid.removeChild(whitelistGrid.lastElementChild);
+    }
+}
+    </script>
+</div>

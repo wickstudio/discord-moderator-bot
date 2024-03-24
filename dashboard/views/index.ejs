@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+    <!-- Compiled and minified JavaScript -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .content-auto {
+          content-visibility: auto;
+        }
+      }
+    </style>
+    <% let pageScript = ''; switch (page) { case 'AutoResponders': pageScript =
+    'autoResponders.js'; break; case 'commands': pageScript = 'commands.js';
+    break; case 'logger': pageScript = 'logger.js'; break; case 'protection':
+    pageScript = 'protection.js'; break; } %>
+
+    <script src="/js/<%= pageScript %>"></script>
+
+    <%- `
+    <script>
+      const data = ${JSON.stringify({ ...config, token:null })};
+    </script>
+    ` %>
+    <meta
+      property="og:image"
+      content="https://cdn.discordapp.com/attachments/1208145065826844753/1221414049133232251/png_logo.png?ex=66127d7a&is=6600087a&hm=34714d952ff4436792f5181571db62aaadecda9dfc29cf73099431fff57daa1c&"
+    />
+    <title>Wick System</title>
+  </head>
+
+  <body>
+    <nav
+      id="navbar"
+      class="w-full fixed bg-[#031520] text-white shadow-md z-[1000000000]"
+    >
+      <div class="nav-container flex items-center justify-between p-3">
+        <!-- Open icon using Font Awesome -->
+        <button id="open" class="text-xl">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h3 class="text-lg">Wick System</h3>
+        <!-- Ensure you have the correct path to your logo -->
+        <img
+          src="/img/logo.png"
+          alt="Wick System Logo"
+          class="logo w-12 h-auto"
+        />
+      </div>
+    </nav>
+
+    <main>
+      <%- include('sidebar') %> <% switch (page) { case 'AutoResponders': %><%-
+      include('AutoResponders') %><% break; case 'commands': %><%-
+      include('commands') %><% break; case 'logger': %><%- include('logger')
+      %><% break; case 'protection': %><%- include('protection') %><% break;
+      case 'ticket': %><%- include('ticket') %><% break; case 'overview': %><%-
+      include('overview') %><% break; default: %><%- include('AutoResponders')
+      %><% } %>
+    </main>
+  </body>
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const openButton = document.getElementById("open");
+    const page = document.querySelector(".page");
+    openButton.addEventListener("click", function () {
+      // Check if the navigation is currently open or closed
+      const isOpen = sidebar.classList.contains("translate-x-0");
+
+      // Toggle the state based on the current state
+      if (isOpen) {
+        // If open, close it by applying the translateX(-100%) class
+        sidebar.classList.remove("translate-x-0");
+        sidebar.classList.add("translate-x-[-100%]");
+      } else {
+        // If closed, open it by removing the translateX(-100%) class
+        sidebar.classList.remove("translate-x-[-100%]");
+        sidebar.classList.add("translate-x-0");
+      }
+    });
+  </script>
+</html>

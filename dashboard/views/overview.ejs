@@ -1,0 +1,50 @@
+<div class="page">
+  <div class="container mx-auto py-[2.5rem]">
+    <div class="flex justify-center items-center flex-col gap-8">
+      <form action="/overview" method="POST">
+        <div class="inputs">
+          <div class="input-container">
+            <input type="text" name="clientId" id="input" required value="<%- config.clientId %>" />
+            <label for="input" class="label">Client ID</label>
+            <div class="underline"></div>
+          </div>
+
+          <div class="input-container">
+            <input type="text" id="input" required name="guildId" value="<%- config.guildId %>" />
+            <label for="input" class="label">Guild ID</label>
+            <div class="underline"></div>
+          </div>
+
+          <div class="input-container">
+            <input type="text" name="autoRole[userRoleId]" id="input" required
+              value="<%= config.autoRole.userRoleId %>" />
+            <label for="input" class="label">User Role ID</label>
+            <div class="underline"></div>
+          </div>
+
+          <div class="input-container">
+            <input type="text" id="input" name="autoRole[botRoleId]" required
+              value="<%= config.autoRole.botRoleId %>" />
+            <label for="input" class="label">Bot Role ID</label>
+            <div class="underline"></div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-5 mt-7 justify-center items-center">
+        <div class="w-[20rem] text-white">
+          <label>Giveaways Enabled</label>
+          <select name="giveaways[enabled]" class="mentionUserSelect w-full bg-[#162228] px-2 py-1 border rounded">
+            <option value="true" <% if (JSON.parse(config.giveaways.enabled)) { %>selected<% } %>>Yes</option>
+            <option value="false" <% if (!JSON.parse(config.giveaways.enabled)) { %>selected<% } %>>No</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="ui-btn bg-[#010314]" id="saveAutoResponders">
+            <span>Save Configuration</span>
+          </button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

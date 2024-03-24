@@ -1,0 +1,58 @@
+<div
+  id="sidebar"
+  class="fixed top-0 left-0 h-screen w-64 pt-8 bg-[#141e26] text-white shadow-md translate-x-0 z-10"
+  style="margin-top: 70px"
+>
+<div class="about flex flex-col items-center justify-center gap-5">
+  <img
+    src="/img/logo.png"
+    alt="Wick System Logo"
+    class="h-[100px] w-[100px]"
+  />
+  <h2 class="text-center text-white mb-5 text-[20px] font-bold">
+    Wick System
+  </h2>
+</div>
+
+  <!-- Categorized Navigation Menu -->
+  <ul class="list-none p-0">
+    <!-- Dashboard Overview -->
+    <li class="px-4 py-2 text-xs text-[#ddd] uppercase">Dashboard Overview</li>
+    <li class="block hover:bg-[#555] hover:text-white hover:rounded-md <%- page == "overview" && "bg-[#555] rounded-md" %>">
+      <a href="/overview" class="flex items-center py-2.5 pl-2.5 text-[#ddd] w-full">
+        <i class="fa-solid fa-eye mr-4"></i>Overview
+      </a>
+    </li>
+
+    <!-- Communication Tools -->
+    <li class="px-4 py-2 text-xs text-[#ddd] uppercase">Automation</li>
+    <li class="block hover:bg-[#555] hover:text-white hover:rounded-md <%- page == "AutoResponders" && "bg-[#555] rounded-md" %>">
+      <a href="/autoResponders" class="flex items-center py-2.5 pl-2.5 text-[#ddd] w-full">
+        <i class="fa-solid fa-reply-all mr-4"></i>Auto Responders
+      </a>
+    </li>
+    <li class="block hover:bg-[#555] hover:text-white hover:rounded-md <%- page == "commands" && "bg-[#555] rounded-md" %>">
+      <a href="/commands" class="flex items-center py-2.5 pl-2.5 text-[#ddd] w-full">
+        <i class="fa-solid fa-terminal mr-4"></i>Commands
+      </a>
+    </li>
+
+    <!-- Monitoring and Security -->
+    <li class="px-4 py-2 text-xs text-[#ddd] uppercase">Monitoring and Security</li>
+    <li class="block hover:bg-[#555] hover:text-white hover:rounded-md <%- page == "logger" && "bg-[#555] rounded-md" %>">
+      <a href="/logger" class="flex items-center py-2.5 pl-2.5 text-[#ddd] w-full">
+        <i class="fa-solid fa-book mr-4"></i>Logger
+      </a>
+    </li>
+    <li class="block hover:bg-[#555] hover:text-white hover:rounded-md <%- page == "protection" && "bg-[#555] rounded-md" %>">
+      <a href="/protection" class="flex items-center py-2.5 pl-2.5 text-[#ddd] w-full">
+        <i class="fa-solid fa-shield-halved mr-4"></i>Protection
+      </a>
+    </li>
+    <li class="block hover:bg-[#555] hover:text-white hover:rounded-md <%- page == "ticket" && "bg-[#555] rounded-md" %>">
+      <a href="/ticket" class="flex items-center py-2.5 pl-2.5 text-[#ddd] w-full">
+        <i class="fa-solid fa-ticket mr-4"></i>Tickets
+      </a>
+    </li>
+  </ul>
+</div>

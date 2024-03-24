@@ -1,0 +1,157 @@
+<div class="page">
+    <div class="container mx-auto px-4 py-5">
+        <h1 class="text-2xl font-bold text-white mb-6">Edit Ticket Settings</h1>
+        <form action="/ticket" method="POST" class="space-y-5">
+          <div>
+            <h2 class="text-xl font-semibold text-white">Ticket Setup</h2>
+            <div class="mt-3">
+              <label class="block text-white">Embed Color:</label>
+              <input type="color" required name="ticketSetup[embedColor]" value="<%= config.ticketSettings.ticketSetup.embedColor %>" class="border rounded p-2">
+            </div>
+            <div class="mt-3">
+              <label class="block text-white">Embed Title:</label>
+              <input type="text" required name="ticketSetup[embedTitle]" value="<%= config.ticketSettings.ticketSetup.embedTitle %>" class="border rounded p-2 w-full">
+            </div>
+            <div class="mt-3">
+              <label class="block text-white">Embed Description:</label>
+              <textarea name="ticketSetup[embedDescription]" class="border rounded p-2 w-full"><%= config.ticketSettings.ticketSetup.embedDescription %></textarea>
+            </div>
+            <div class="mt-3">
+              <label class="block text-white">Embed Image URL:</label>
+              <input type="url" name="ticketSetup[embedImage]" value="<%= config.ticketSettings.ticketSetup.embedImage %>" class="border rounded p-2 w-full">
+            </div>
+          </div>
+    
+          <!-- Dynamically generated part for ticketGroups will go here -->
+          <div>
+            <h2 class="text-xl font-semibold text-white">Ticket Groups</h2>
+            <div id="ticketGroupsContainer">
+              <% Object.keys(config.ticketSettings.ticketGroups).forEach(function(groupKey) { %>
+                <div class="mt-3 p-4 border rounded" data-group-key="<%= groupKey %>">
+                  <div class="group flex justify-between">
+                    <h3 class="text-lg font-semibold text-white">Group:</h3>
+                    <input type="text" required name="ticketGroups[<%= groupKey %>][key]" value="<%= groupKey %>" class="border rounded p-2 text-lg font-semibold text-white" readonly ondblclick="this.readOnly='';" onblur="this.readOnly=true;">
+                    <button type="button" onclick="removeGroup('<%= groupKey %>')" class="remove text-red-500">Remove</button>
+                  </div>
+                  <% let group = config.ticketSettings.ticketGroups[groupKey]; %>
+                  <div class="mt-3">
+                    <label class="block text-white">Button Custom ID:</label>
+                    <input type="text" required name="ticketGroups[<%= groupKey %>][buttonCustomId]" value="<%= group.buttonCustomId %>" class="border rounded p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white">Button Style:</label>
+                    <select name="ticketGroups[<%= groupKey %>][buttonStyle]" class="border rounded p-2 w-full">
+                      <option value="Primary" <%= group.buttonStyle === 'Primary' ? 'selected' : '' %>>Primary</option>
+                      <option value="Secondary" <%= group.buttonStyle === 'Secondary' ? 'selected' : '' %>>Secondary</option>
+                    </select>
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white">Ticket Category ID:</label>
+                    <input type="text" required name="ticketGroups[<%= groupKey %>][ticketCategoryId]" value="<%= group.ticketCategoryId %>" class="border rounded p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white">Support Role ID:</label>
+                    <input type="text" required name="ticketGroups[<%= groupKey %>][supportRoleId]" value="<%= group.supportRoleId %>" class="border rounded p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white">Image URL:</label>
+                    <input type="url" name="ticketGroups[<%= groupKey %>][image]" value="<%= group.image %>" class="border rounded p-2 w-full">
+                  </div>
+                                    <div class="mt-3">
+                    <label class="block text-white">Button Label:</label>
+                    <input type="text" required name="ticketGroups[<%= groupKey %>][buttonLabel]" value="<%= group.buttonLabel %>" class="border rounded p-2 w-full">
+                  </div>
+                  <!-- Add more inputs for each property like above -->
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          
+
+          <div class="rolebutton flex gap-4">
+            <button
+            type="submit"
+            class="ui-btn bg-[#010314]"
+          >
+            <span>Save Settings</span>
+          </button>
+          <button
+          type="button"
+          class="ui-btn bg-[#010314]"
+          onclick="addGroup()"
+        >
+          <span>Add Group</span>
+        </button>
+          </div>
+          </div>
+        </form>
+      </div>
+      <script>
+        function addGroup() {
+          const container = document.getElementById('ticketGroupsContainer');
+          const newGroupKey = `group_${Date.now()}`; // Simple unique key generator
+          const groupHTML = `
+            <div class="mt-3 p-4 border rounded" data-group-key="${newGroupKey}">
+              <div class="group flex justify-between">
+                <h3 class="text-lg font-semibold text-white">Group:</h3>
+                <button type="button" onclick="removeGroup('${newGroupKey}')" class="remove text-red-500">Remove</button>
+              </div>
+              <!-- Form inputs for new group -->
+            </div>`;
+          container.insertAdjacentHTML('beforeend', groupHTML);
+        }
+      
+        function removeGroup(groupKey) {
+          const groupElement = document.querySelector(`[data-group-key="${groupKey}"]`);
+          groupElement.remove();
+        }
+      </script>
+         <script>
+            function addGroup() {
+              const container = document.getElementById('ticketGroupsContainer');
+              const newGroupKey = `group_${Date.now()}`; // Simple unique key generator
+              const groupHTML = `
+                <div class="autoResponderEntry mt-3 p-4 border rounded-[15px]" data-group-key="${newGroupKey}">
+                  <div class="group flex justify-between">
+                    <h3 class="text-lg font-semibold text-white">Group:</h3>
+                    <input type="text" required name="ticketGroups[${newGroupKey}][key]" value="${newGroupKey}" class="input p-2 text-lg font-semibold text-gray-700">
+                    <button type="button" onclick="removeGroup('${newGroupKey}')" class="remove text-red-500">Remove</button>
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white mb-2">Button Label:</label>
+                    <input type="text" required name="ticketGroups[${newGroupKey}][buttonLabel]" class="input p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white">Button Custom ID:</label>
+                    <input type="text" required name="ticketGroups[${newGroupKey}][buttonCustomId]" class="input p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white mb-2">Button Style:</label>
+                    <select name="ticketGroups[${newGroupKey}][buttonStyle]" class="input p-2 w-full">
+                      <option value="Primary">Primary</option>
+                      <option value="Secondary">Secondary</option>
+                    </select>
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white mb-2">Ticket Category ID:</label>
+                    <input type="text" required name="ticketGroups[${newGroupKey}][ticketCategoryId]" class="input p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white mb-2">Support Role ID:</label>
+                    <input type="text" required name="ticketGroups[${newGroupKey}][supportRoleId]" class="input p-2 w-full">
+                  </div>
+                  <div class="mt-3">
+                    <label class="block text-white mb-2">Image URL:</label>
+                    <input type="url" name="ticketGroups[${newGroupKey}][image]" class="input p-2 w-full">
+                  </div>
+                </div>`;
+              container.insertAdjacentHTML('beforeend', groupHTML);
+            }
+          
+            function removeGroup(groupKey) {
+              const groupElement = document.querySelector(`[data-group-key="${groupKey}"]`);
+              groupElement.remove();
+            }
+          </script>
+          
+</div>

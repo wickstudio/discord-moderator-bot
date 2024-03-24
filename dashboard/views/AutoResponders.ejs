@@ -1,0 +1,75 @@
+<div class="page">
+  <div class="container mx-auto p-6 text-[white]">
+    <h2 class="text-xl font-semibold mb-4">Edit AutoResponders</h2>
+    <form id="autoRespondersForm" class="mb-4">
+      <!-- AutoResponder entries will be dynamically inserted here -->
+      <div class="buttons flex gap-8" id="AutoResponderButtons">
+        <button class="ui-btn bg-[#010314]" id="addAutoResponder">
+          <span>Add New</span>
+        </button>
+        <!-- Save Button -->
+        <button
+          type="submit"
+          class="ui-btn bg-[#010314]"
+          id="saveAutoResponders"
+        >
+          <span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Entry Template (hidden) -->
+  <template id="entryTemplate">
+    <div
+      class="autoResponderEntry mb-4 p-4 border border-gray-200 rounded-[15px]"
+    >
+      <div class="mb-4">
+        <label>Trigger</label>
+        <input
+          type="text"
+          name="trigger"
+          required
+          class="input triggerInput w-full px-2 py-1 mt-2 border rounded"
+          placeholder="Enter trigger"
+        />
+      </div>
+      <div class="mb-4">
+        <label>Reply</label>
+        <input
+          type="text"
+          name="reply"
+          required
+          class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+          placeholder="Enter reply"
+        />
+      </div>
+      <div class="mb-4">
+        <label>Mention User</label>
+        <select
+          name="mentionUser"
+          class="mentionUserSelect w-full bg-[#162228] px-2 py-1 border rounded"
+        >
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </div>
+
+      <button class="removeAutoResponder button">
+        <span class="text">Delete</span
+        ><span class="icon"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+            ></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </template>
+</div>

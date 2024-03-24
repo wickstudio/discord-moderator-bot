@@ -1,0 +1,367 @@
+@import url("https://fonts.cdnfonts.com/css/poppins");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.banner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  background: url(../img/Background.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow-x: hidden;
+}
+.banner::before {
+  content: "";
+  position: absolute;
+  right: 100px;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #7241ff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #7241ff, 0 0 50px #7241ff, 0 0 150px #7241ff;
+  transition: 1s;
+}
+.banner.active::before {
+  background: #21283a;
+  box-shadow: 0 0 0 1200px #141821;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 100px;
+}
+header .logo {
+  font-size: 1.5rem;
+  color: #fff;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.5s;
+  transform-origin: left;
+}
+header .logo span {
+  color: #7241ff;
+  border-bottom: 4px solid #7241ff;
+}
+header .toggle {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: url(../img/menu.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+  cursor: pointer;
+}
+header .toggle.active {
+  background: url(../img/close.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+}
+.logoImg {
+  position: absolute;
+  right: 125px;
+  width: 450px;
+  height: 450px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.5s;
+  transform-origin: left;
+}
+.content .contentBx {
+  position: relative;
+  max-width: 600px;
+  z-index: 100;
+}
+.content .contentBx h4 {
+  font-weight: 600;
+  color: #7241ff;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.content .contentBx h2 {
+  font-size: 1.5em;
+  line-height: 1em;
+  color: #fff;
+  text-transform: capitalize;
+}
+.content .contentBx h3 {
+  font-weight: 300;
+  color: #fff;
+  font-size: 1.8em;
+  line-height: 1.5em;
+  text-transform: capitalize;
+}
+.content .contentBx p {
+  font-size: 1em;
+  color: #fff;
+  margin: 10px 0;
+  margin-bottom: 20px;
+}
+.ui-btn {
+  --btn-default-bg: #010314;
+  --btn-padding: 15px 20px;
+  --btn-hover-bg: rgb(51, 51, 51);
+  --btn-transition: 0.3s;
+  --btn-letter-spacing: 0.1rem;
+  --btn-animation-duration: 1.2s;
+  --btn-shadow-color: rgba(0, 0, 0, 0.137);
+  --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
+  --hover-btn-color: #7241ff;
+  --default-btn-color: #fff;
+  --font-size: 16px;
+  /* 👆 this field should not be empty */
+  --font-weight: 600;
+  --font-family: Menlo, Roboto Mono, monospace;
+}
+
+/* button settings 👆 */
+
+.ui-btn {
+  box-sizing: border-box;
+  padding: var(--btn-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--default-btn-color);
+  font: var(--font-weight) var(--font-size) var(--font-family);
+  background: var(--btn-default-bg);
+  cursor: pointer;
+  transition: var(--btn-transition);
+  overflow: hidden;
+  box-shadow: var(--btn-shadow);
+  border-radius: 10px;
+  border: 2px solid #2a2b3a;
+}
+
+.ui-btn span {
+  letter-spacing: var(--btn-letter-spacing);
+  transition: var(--btn-transition);
+  box-sizing: border-box;
+  position: relative;
+  background: inherit;
+}
+
+.ui-btn span::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  background: inherit;
+}
+
+.ui-btn:hover,
+.ui-btn:focus {
+  background: var(--btn-default-bg);
+  box-shadow: 0px 0px 10px 0px rgba(119, 68, 255, 0.7);
+  border: 2px solid #7241ff;
+}
+
+.ui-btn:hover span,
+.ui-btn:focus span {
+  color: var(--hover-btn-color);
+}
+
+.ui-btn:hover span::before,
+.ui-btn:focus span::before {
+  animation: chitchat linear both var(--btn-animation-duration);
+}
+
+@keyframes chitchat {
+  0% {
+    content: "#";
+  }
+
+  5% {
+    content: ".";
+  }
+
+  10% {
+    content: "^{";
+  }
+
+  15% {
+    content: "-!";
+  }
+
+  20% {
+    content: "#$_";
+  }
+
+  25% {
+    content: "№:0";
+  }
+
+  30% {
+    content: "#{+.";}35%{content: "@}-?";
+  }
+
+  40% {
+    content: "?{4@%";
+  }
+
+  45% {
+    content: "=.,^!";
+  }
+
+  50% {
+    content: "?2@%";
+  }
+
+  55% {
+    content: "\;1}]";
+  }
+
+  60% {
+    content: "?{%:%";
+    right: 0;
+  }
+
+  65% {
+    content: "|{f[4";
+    right: 0;
+  }
+
+  70% {
+    content: "{4%0%";
+    right: 0;
+  }
+
+  75% {
+    content: "'1_0<";
+    right: 0;
+  }
+
+  80% {
+    content: "{0%";
+    right: 0;
+  }
+
+  85% {
+    content: "]>'";
+    right: 0;
+  }
+
+  90% {
+    content: "4";
+    right: 0;
+  }
+
+  95% {
+    content: "2";
+    right: 0;
+  }
+
+  100% {
+    content: "";
+    right: 0;
+  }
+}
+.buttons {
+  display: flex;
+  gap: 2rem;
+}
+.buttons a {
+  text-decoration: none;
+}
+.banner.active .logo,
+.banner.active .content {
+  transform: scale(0);
+}
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  z-index: 2;
+  padding-left: 100px;
+  transform: translateY(35%);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+.banner.active .menu {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+.menu li {
+  list-style: none;
+}
+.menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  margin: 5px 0;
+  display: inline-block;
+  transition: 0.25s;
+}
+.menu li:hover a {
+  letter-spacing: 6px;
+  background: #fff;
+  color: #161a23;
+}
+@media (max-width: 991px) {
+  .banner {
+    padding: 40px;
+  }
+  header {
+    padding: 20px 40px;
+  }
+  .banner::before {
+    opacity: 0;
+  }
+  .logoImg {
+    right: -30px;
+    opacity: 0.3;
+  }
+  .menu {
+    padding: 0;
+    align-items: center;
+  }
+  .content .contentBx h2 {
+    font-size: 1.8em;
+  }
+  .content .contentBx h4 {
+    display: none;
+  }
+  .content .contentBx h3 {
+    font-size: 1.2em;
+  }
+}
+
+#sidebar {
+  transition: -webkit-transform 0.3s ease-out 0s;
+  will-change: transform;
+}

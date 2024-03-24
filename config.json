@@ -1,0 +1,165 @@
+{
+  "clientId": "bot_id",
+  "guildId": "server_id",
+  "autoRole": {
+    "userRoleId": "auto_user_role_id",
+    "botRoleId": "auto_bot_role_id"
+  },
+  "ticketSettings": {
+    "ticketSetup": {
+      "embedColor": "#0099ff",
+      "embedTitle": "Ticket System Setup",
+      "embedDescription": "Click one of the buttons below to create a ticket.",
+      "embedImage": "https://media.discordapp.net/attachments/1219719119079866498/1219854567978700850/DALLE_2024-01-07_05.36.38_-_A_stylish_banner_featuring_the_name_WICK_in_sleek_modern_letters._The_color_scheme_includes_deep_black_for_the_background_and_a_vivid_red_for_the_l.png?ex=660cd118&is=65fa5c18&hm=3255e1ca326e1e95e1177e1022aa9c0841fcec5415abfa868807b588ef24c184&=&format=webp&quality=lossless&width=687&height=392"
+    },
+    "ticketGroups": {}
+  },
+  "giveaways": {
+    "enabled": "false"
+  },
+  "autoResponders": [
+    {
+      "trigger": "hello",
+      "reply": "Hello, {{username}}! How can I assist you today?",
+      "mentionUser": true
+    },
+    {
+      "trigger": "Wick Studio",
+      "reply": "discord.gg/wicks {{user}}",
+      "mentionUser": true
+    }
+  ],
+  "protection": {
+    "allowedGuildId": "server_id",
+    "logChannelId": "channel_id",
+    "whitelistRoles": [
+      "ROLE_ID_1",
+      "ROLE_ID_2"
+    ],
+    "antispam": {
+      "messageCount": 2,
+      "time": 10000,
+      "timeoutDuration": 60000,
+      "active": "false",
+      "deleteMessages": "false",
+      "timeout": "false"
+    },
+    "antilinks": {
+      "actions": {
+        "timeoutDuration": 60000,
+        "timeout": "false",
+        "kick": "false",
+        "ban": "false"
+      },
+      "active": "false",
+      "deleteMessages": "false"
+    },
+    "channelMonitoring": {
+      "maxChannelChanges": 2,
+      "timeFrame": 60000,
+      "action": "kick",
+      "timeoutDuration": 600000,
+      "active": "false"
+    },
+    "roleMonitoring": {
+      "maxRoleChanges": 3,
+      "timeFrame": 60000,
+      "action": "timeout",
+      "timeoutDuration": 600000,
+      "active": "false"
+    },
+    "kickMonitoring": {
+      "maxKicks": 1,
+      "timeFrame": 60000,
+      "action": "kick",
+      "timeoutDuration": 600000,
+      "active": "false"
+    },
+    "banMonitoring": {
+      "maxBans": 1,
+      "timeFrame": 60000,
+      "action": "kick",
+      "timeoutDuration": 600000,
+      "active": "false"
+    },
+    "botMonitoring": {
+      "action": "kick",
+      "botAction": "kick",
+      "timeoutDuration": 600000,
+      "active": "false"
+    },
+    "roleEditMonitoring": {
+      "maxEdits": 3,
+      "timeFrame": 60000,
+      "action": "timeout",
+      "timeoutDuration": 600000,
+      "active": "false"
+    },
+    "serverEditMonitoring": {
+      "maxEdits": 3,
+      "timeFrame": 60000,
+      "action": "timeout",
+      "timeoutDuration": 600000,
+      "active": "false"
+    }
+  },
+  "commands": {
+    "userinfo": true,
+    "serverinfo": true,
+    "avatar": true,
+    "banner": true,
+    "clear": true,
+    "timeout": true,
+    "kick": true,
+    "ban": true,
+    "unban": true,
+    "role": true,
+    "rtimeout": true,
+    "lock": true,
+    "unlock": true,
+    "setnick": true,
+    "mute": true,
+    "unmute": true,
+    "move": true,
+    "giveawaySetup": true
+  },
+  "logger": {
+    "enabled": true,
+    "events": {
+      "nicknameChangelog": "channel_id",
+      "nicknameChange": true,
+      "channelCreatelog": "channel_id",
+      "channelCreate": true,
+      "channelDeletelog": "channel_id",
+      "channelDelete": true,
+      "channelUpdatelog": "channel_id",
+      "channelUpdate": true,
+      "createrolelog": "channel_id",
+      "roleCreate": true,
+      "deleterolelog": "channel_id",
+      "roleDelete": true,
+      "roleUpdateLogChannelId": "channel_id",
+      "roleUpdate": true,
+      "roleMemberLogChannelId": "channel_id",
+      "roleMember": true,
+      "messageDeleteLogChannelId": "channel_id",
+      "messageDelete": true,
+      "messageEditLogChannelId": "channel_id",
+      "messageEdit": true,
+      "memberKicklog": "channel_id",
+      "memberKick": true,
+      "memberBanlog": "channel_id",
+      "memberBan": true,
+      "memberUnbanlog": "channel_id",
+      "memberUnban": true,
+      "memberJoinlog": "channel_id",
+      "memberJoin": true,
+      "memberLeftlog": "channel_id",
+      "memberLeft": true,
+      "voiceChannellog": "channel_id",
+      "voiceChannel": true,
+      "voiceChannelUpdatelog": "channel_id",
+      "voiceChannelUpdate": true
+    }
+  }
+}

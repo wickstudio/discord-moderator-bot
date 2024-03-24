@@ -1,0 +1,280 @@
+<div class="page">
+  <div class="container mx-auto px-4">
+    <div class="commands pt-[1.5rem]">
+      <form id="commandsForm" method="POST">
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">User Info</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-1" class="inp-cbx" name="userinfo"
+            <%=config.commands.userinfo ? 'checked' : '' %> />
+            <label for="cbx-1" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Server Info</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-2" class="inp-cbx" name="serverinfo"
+            <%=config.commands.serverinfo ? 'checked' : '' %>/>
+            <label for="cbx-2" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Avatar</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-3" class="inp-cbx" name="avatar"
+            <%=config.commands.avatar ? 'checked' : '' %>/>
+            <label for="cbx-3" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Banner</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-4" class="inp-cbx" name="banner"
+            <%=config.commands.banner ? 'checked' : '' %>/>
+            <label for="cbx-4" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Clear</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-clear" class="inp-cbx" name="clear"
+            <%=config.commands.clear ? 'checked' : '' %>/>
+            <label for="cbx-clear" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Timeout</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-timeout" class="inp-cbx"
+            name="timeout" <%=config.commands.timeout ? 'checked' : '' %>/>
+            <label for="cbx-timeout" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Kick</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-kick" class="inp-cbx" name="kick"
+            <%=config.commands.kick ? 'checked' : '' %>/>
+            <label for="cbx-kick" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Ban</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-ban" class="inp-cbx" name="ban"
+            <%=config.commands.ban ? 'checked' : '' %>/>
+            <label for="cbx-ban" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Unban</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-unban" class="inp-cbx" name="unban"
+            <%=config.commands.unban ? 'checked' : '' %>/>
+            <label for="cbx-unban" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Role</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-role" class="inp-cbx" name="role"
+            <%=config.commands.role ? 'checked' : '' %>/>
+            <label for="cbx-role" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Remove Timeout</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-rtimeout" class="inp-cbx"
+            name="rtimeout" <%=config.commands.rtimeout ? 'checked' : '' %>/>
+            <label for="cbx-rtimeout" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Lock</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-lock" class="inp-cbx" name="lock"
+            <%=config.commands.lock ? 'checked' : '' %>/>
+            <label for="cbx-lock" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Unlock</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-unlock" class="inp-cbx" name="unlock"
+            <%=config.commands.unlock ? 'checked' : '' %>/>
+            <label for="cbx-unlock" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Set Nickname</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-setnick" class="inp-cbx"
+            name="setnick" <%=config.commands.setnick ? 'checked' : '' %>/>
+            <label for="cbx-setnick" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Mute</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-mute" class="inp-cbx" name="mute"
+            <%=config.commands.mute ? 'checked' : '' %>/>
+            <label for="cbx-mute" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Unmute</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-unmute" class="inp-cbx" name="unmute"
+            <%=config.commands.unmute ? 'checked' : '' %>/>
+            <label for="cbx-unmute" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Move</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-move" class="inp-cbx" name="move"
+            <%=config.commands.move ? 'checked' : '' %>/>
+            <label for="cbx-move" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="command flex justify-between p-4 mb-5">
+          <h2 class="text-white font-bold text-[18px]">Giveaway Setup</h2>
+          <div class="checkbox">
+            <input type="checkbox" id="cbx-giveawaySetup" class="inp-cbx"
+            name="giveawaySetup" <%=config.commands.giveawaySetup ? 'checked' :
+            '' %>/>
+            <label for="cbx-giveawaySetup" class="cbx">
+              <span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="my-4">
+          <button
+            type="submit"
+            class="ui-btn bg-[#010314]"
+            id="saveAutoResponders"
+          >
+            <span>Save</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

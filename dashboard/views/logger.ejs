@@ -1,0 +1,493 @@
+<div class="page">
+  <div class="container mx-auto px-4">
+    <form class="mb-5" id="loggerForm" method="POST">
+      <table class="mt-5">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>ID</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Nickname Changelog Log ID -->
+          <tr>
+            <td>Nickname Changelog Log ID</td>
+            <td>
+              <input
+                required
+                type="text"
+                name="nicknameChangelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.nicknameChangelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="nicknameChange" name="nicknameChange"
+                class="inp-cbx" <%=config.logger.events.nicknameChange ?
+                'checked' : '' %>>
+                <label for="nicknameChange" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Channel Create Log ID -->
+          <tr>
+            <td>Channel Create Log ID</td>
+            <td>
+              <input
+                required
+                type="text"
+                name="channelCreatelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.channelCreatelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="channelCreate" name="channelCreate"
+                class="inp-cbx" <%=config.logger.events.channelCreate ?
+                'checked' : '' %>>
+                <label for="channelCreate" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Channel Delete Log ID -->
+          <tr>
+            <td>Channel Delete Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="channelDeletelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.channelDeletelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="channelDelete" name="channelDelete"
+                class="inp-cbx" <%=config.logger.events.channelDelete ?
+                'checked' : '' %>>
+                <label for="channelDelete" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Channel Update Log ID -->
+          <tr>
+            <td>Channel Update Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="channelUpdatelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.channelUpdatelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="channelUpdate" name="channelUpdate"
+                class="inp-cbx" <%=config.logger.events.channelUpdate ?
+                'checked' : '' %>>
+                <label for="channelUpdate" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Create Role Log ID -->
+          <tr>
+            <td>Create Role Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="createrolelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.createrolelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="roleCreate" name="roleCreate"
+                class="inp-cbx" <%=config.logger.events.roleCreate ? 'checked' :
+                '' %>>
+                <label for="roleCreate" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Delete Role Log ID -->
+          <tr>
+            <td>Delete Role Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="deleterolelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.deleterolelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="roleDelete" name="roleDelete"
+                class="inp-cbx" <%=config.logger.events.roleDelete ? 'checked' :
+                '' %>>
+                <label for="roleDelete" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Role Update Log Channel ID -->
+          <tr>
+            <td>Role Update Log Channel ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="roleUpdateLogChannelId"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.roleUpdateLogChannelId %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="roleUpdate" name="roleUpdate"
+                class="inp-cbx" <%=config.logger.events.roleUpdate ? 'checked' :
+                '' %>>
+                <label for="roleUpdate" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Role Member Log Channel ID -->
+          <tr>
+            <td>Role Member Log Channel ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="roleMemberLogChannelId"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.roleMemberLogChannelId %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="roleMember" name="roleMember"
+                class="inp-cbx" <%=config.logger.events.roleMember ? 'checked' :
+                '' %>>
+                <label for="roleMember" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Message Delete Log Channel ID -->
+          <tr>
+            <td>Message Delete Log Channel ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="messageDeleteLogChannelId"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.messageDeleteLogChannelId %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="messageDelete" name="messageDelete"
+                class="inp-cbx" <%=config.logger.events.messageDelete ?
+                'checked' : '' %>>
+                <label for="messageDelete" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Message Edit Log Channel ID -->
+          <tr>
+            <td>Message Edit Log Channel ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="messageEditLogChannelId"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.messageEditLogChannelId %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="messageEdit" name="messageEdit"
+                class="inp-cbx" <%=config.logger.events.messageEdit ? 'checked'
+                : '' %>>
+                <label for="messageEdit" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Member Kick Log ID -->
+          <tr>
+            <td>Member Kick Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="memberKicklog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.memberKicklog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="memberKick" name="memberKick"
+                class="inp-cbx" <%=config.logger.events.memberKick ? 'checked' :
+                '' %>>
+                <label for="memberKick" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Member Ban Log ID -->
+          <tr>
+            <td>Member Ban Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="memberBanlog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.memberBanlog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="memberBan" name="memberBan"
+                class="inp-cbx" <%=config.logger.events.memberBan ? 'checked' :
+                '' %>>
+                <label for="memberBan" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Member Unban Log ID -->
+          <tr>
+            <td>Member Unban Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="memberUnbanlog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.memberUnbanlog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="memberUnban" name="memberUnban"
+                class="inp-cbx" <%=config.logger.events.memberUnban ? 'checked'
+                : '' %>>
+                <label for="memberUnban" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Member Join Log ID -->
+          <tr>
+            <td>Member Join Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="memberJoinlog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.memberJoinlog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="memberJoin" name="memberJoin"
+                class="inp-cbx" <%=config.logger.events.memberJoin ? 'checked' :
+                '' %>>
+                <label for="memberJoin" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Member Left Log ID -->
+          <tr>
+            <td>Member Left Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="memberLeftlog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.memberLeftlog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="memberLeft" name="memberLeft"
+                class="inp-cbx" <%=config.logger.events.memberLeft ? 'checked' :
+                '' %>>
+                <label for="memberLeft" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Voice Channel Log ID -->
+          <tr>
+            <td>Voice Channel Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="voiceChannellog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.voiceChannellog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="voiceChannel" name="voiceChannel"
+                class="inp-cbx" <%=config.logger.events.voiceChannel ? 'checked'
+                : '' %>>
+                <label for="voiceChannel" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+          <!-- Voice Channel Update Log ID -->
+          <tr>
+            <td>Voice Channel Update Log ID</td>
+            <td>
+              <input
+                type="text"
+                required
+                name="voiceChannelUpdatelog"
+                class="input replyInput w-full px-2 py-1 mt-2 border rounded"
+                placeholder="ID"
+                value="<%= config.logger.events.voiceChannelUpdatelog %>"
+              />
+            </td>
+            <td>
+              <div class="checkbox">
+                <input type="checkbox" id="voiceChannelUpdate"
+                name="voiceChannelUpdate" class="inp-cbx"
+                <%=config.logger.events.voiceChannelUpdate ? 'checked' : '' %>>
+                <label for="voiceChannelUpdate" class="cbx"
+                  ><span>
+                    <svg viewBox="0 0 12 10" height="10px" width="12px">
+                      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                    </svg> </span
+                ></label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-4">
+        <button
+          type="submit"
+          class="ui-btn bg-[#010314]"
+          id="saveAutoResponders"
+        >
+          <span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
