@@ -1,6 +1,6 @@
 {
   "clientId": "bot_id",
-  "guildId": "server_id",
+  "guildId": "1298965437207285833",
   "autoRole": {
     "userRoleId": "auto_user_role_id",
     "botRoleId": "auto_bot_role_id"
